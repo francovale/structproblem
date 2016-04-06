@@ -1,0 +1,101 @@
+// ConsoleApplication1.cpp : Defines the entry point for the console application.
+//Valentina Franco
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <fstream>
+using namespace std;
+
+struct Date
+{
+	int month;
+	int day;
+	int year;
+
+};
+
+struct Address
+{
+	string addrs;
+	string city;
+	string state;
+	string zip;
+
+};
+
+struct CustomerInfo
+{
+	string name;
+	Address adrs;
+	string telenum;
+	double balance;
+	Date lastPayment;
+
+};
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	const int NUM = 2;
+	CustomerInfo cust[NUM];
+	int i = 0;
+	fstream dataIn;
+
+	dataIn.open("read.txt", ios::in);
+
+	if (!dataIn)
+	{
+		cout << "Error opening file \n";
+	}
+	else
+	{
+
+		while (!dataIn.eof())
+		{
+			getline(dataIn, cust[i].name, '\n');
+			cout << cust[i].name << endl;
+			getline(dataIn, cust[i].adrs.addrs, '\n');
+			cout << cust[i].adrs.addrs << endl;
+			getline(dataIn, cust[i].adrs.city, '\n');
+			cout << cust[i].adrs.city << endl;
+			getline(dataIn, cust[i].adrs.state, '\n');
+			cout << cust[i].adrs.state << endl;
+			getline(dataIn, cust[i].adrs.zip, '\n');
+			cout << cust[i].adrs.zip << endl;
+			getline(dataIn, cust[i].telenum, '\n');
+			cout << cust[i].telenum << endl;
+			dataIn >> cust[i].balance;
+			cout << cust[i].balance << endl;
+			dataIn >> cust[i].lastPayment.day;
+			cout << cust[i].lastPayment.day << endl;
+			dataIn >> cust[i].lastPayment.month;
+			cout << cust[i].lastPayment.month << endl;
+			dataIn >> cust[i].lastPayment.year;
+			cout << cust[i].lastPayment.year << endl;
+			i++;
+			system("pause");
+		}
+	}
+	dataIn.close();
+
+	for (int i = 0; i < NUM; i++)
+	{
+		cout << cust[i].name << endl;
+		cout << cust[i].adrs.addrs << endl;
+		cout << cust[i].adrs.city << endl;
+		cout << cust[i].adrs.state << endl;
+		cout << cust[i].adrs.zip << endl;
+		cout << cust[i].telenum << endl;
+		cout << cust[i].balance << endl;
+		cout << cust[i].lastPayment.day << "/"
+			<< cust[i].lastPayment.month << "/"
+			<< cust[i].lastPayment.year << endl;
+	}
+
+	
+
+	system("pause");
+	return 0;
+}
+
